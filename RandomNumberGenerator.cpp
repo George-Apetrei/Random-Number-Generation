@@ -4,9 +4,9 @@
 #include <fstream>
 
 //Class to hold all elements of the random generator
-class Map_Generation {
+class Rand_Num_Gen {
 public:
-	Map_Generation();
+	Rand_Num_Gen();
 	int randomGenerator(int lower_limit, int upper_limit);
 private:
 	std::uniform_int_distribution<int> dist;
@@ -14,13 +14,13 @@ private:
 	std::random_device ran_dev;
 };
 
-//Constructor for Map_Generation to create a seed for random generation when the function object is created
-Map_Generation::Map_Generation() {
+//Constructor for Rand_Num_Gen to create a seed for random generation when the function object is created
+Rand_Num_Gen::Rand_Num_Gen() {
 	the_generator.seed(ran_dev());
 }
 
 //The actual random generation function
-int Map_Generation::randomGenerator(int lower_limit, int upper_limit) {
+int Rand_Num_Gen::randomGenerator(int lower_limit, int upper_limit) {
 	std::uniform_int_distribution<int>::param_type parameters(lower_limit, upper_limit);
 	dist.param(parameters);
 	return dist(the_generator);
@@ -44,7 +44,7 @@ void output_to_file(int n, int *numbers) {
 
 int main() {
 	int n, lower_limit, upper_limit;	//All limits are inclusive, so 1 lower limit and 10 upper limit can give 1 and 10 as results
-	Map_Generation m;
+	Rand_Num_Gen m;
 	//Call m.randomGenerator(lower_limit, upper_limit) to use
 
 	//Example with user input:
